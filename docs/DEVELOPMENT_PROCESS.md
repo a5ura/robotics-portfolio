@@ -1,147 +1,141 @@
 # Development Process and Individual Contributions
 
-**Student:** Gowtham Kanneganti
+**Student:** Gowtham Kanneganti  
+**Course:** CMPS 510 — Principles and Concepts of Software Engineering, Bay Atlantic University  
+**Project:** Personal Portfolio Page (Project 7)  
+**Review date:** November 10, 2026
 
-**Course:** CMPS 510 - Principles and Concepts of Software Engineering, Bay Atlantic University
+## 1. Project purpose and my role
 
-**Project:** Personal Portfolio Page (Project 7)
+I selected the Personal Portfolio Page project on November 6, 2026. I wanted to meet the course requirement for a small, working website while building a useful starting point for my professional robotics engineering portfolio.
 
-**Documented:** November 10, 2026
+My primary contribution was determining **what to build, why it should work that way, and how to evaluate the result**. I chose the audience, supplied the professional information, defined the feature set and technical constraints, requested testing and deployment, reviewed portions of the implementation, and personally opened and tested the published website.
 
-This document distinguishes my project direction and personal review from implementation and operations performed with AI assistance. Personal activities below are based on my confirmed account supplied through the Codex session. Repository files, recorded results, and GitHub history support the technical work; they do not independently establish who typed a command or performed a manual browser check.
+The initial source code, automated test scripts, and deployment setup were generated and executed with development-tool assistance. This document is a retrospective explanation of my decisions and the resulting engineering work; it is not a claim that I typed every line of code or personally ran every automated test.
 
-## A. Project Overview
+## 2. Planning and requirements I provided
 
-I selected the Personal Portfolio Page project for my individual CMPS 510 assignment. The selection date of November 6 is recorded in the [Week 10-11 status update](WEEK_10_11_STATUS_UPDATE.md). The project serves two purposes: satisfying the academic requirements for a small working application and presenting my robotics and AI engineering background to recruiters and engineering collaborators.
+| Area | My input and decision | Result in the application |
+| --- | --- | --- |
+| Project selection | Selected the professor's Personal Portfolio Page option and kept the scope within the project charter. | A single-page static website with no accounts, database, or production backend. |
+| Audience and purpose | Chose robotics recruiters, engineering collaborators, and the course instructor as intended visitors. | Professional introduction, project/experience highlights, skills, and contact details. |
+| Personal content | Supplied my name, engineering focus, education, technical skills, and links to GitHub, LinkedIn, and email. | The About, education, technical toolkit, and contact sections. |
+| Featured work | Chose MaintainAI, robotic server-disassembly experience, and computer-vision/inspection experience. | Three cards that distinguish a public software project from professional engineering experience. |
+| Technology | Preferred plain HTML, CSS, and JavaScript over a larger frontend framework. | A small, understandable static implementation that GitHub Pages can host. |
+| Interface | Requested a professional engineering aesthetic, responsive layout, and light/dark themes. | Desktop/mobile layouts and a theme preference stored in the browser. |
+| Contact behavior | Specified name, email, and message fields, validation, and a thank-you message. | A demonstration form that does **not** send or store messages, plus a real email link. |
+| Software engineering | Asked for user stories, acceptance criteria, a layout sketch, tests, documentation, version control, and CI/CD. | Supporting documents, test suites, and a GitHub Actions workflow. |
 
-I defined the professional focus around robotics deployment, systems integration, industrial automation, computer vision, and applied AI. The resulting [portfolio](https://a5ura.github.io/robotics-portfolio/) presents my supplied background, education, skills, one software project, and two areas of engineering experience. The [short academic report](CMPS510_Portfolio_Short_Report.pdf) records five user stories, acceptance criteria, and a layout diagram.
+I used the professor's rubric as the acceptance baseline. The [requirements document](REQUIREMENTS.md) provides numbered functional and nonfunctional requirements, while the [short report](CMPS510_Portfolio_Short_Report.pdf) contains the five course user stories and a matching [wireframe](layout-wireframe.png).
 
-## B. Individual Contributions
+### Scope decisions and trade-offs
 
-### Project decisions and ownership
+- **Static site rather than a backend application:** The assignment does not require accounts or a server, so a static implementation keeps the solution focused and easier to deploy.
+- **Demonstration form rather than message delivery:** A clear confirmation meets the course requirement without implying that a visitor's message reached an inbox.
+- **Theme persistence only:** `localStorage` remembers the selected theme, not personal messages.
+- **Software project versus engineering experience:** MaintainAI links to its real repository; the other two cards summarize professional experience without inventing public code or disclosing proprietary details.
+- **Real photograph still required:** The temporary portrait is visibly identified as a placeholder and remains an outstanding final-submission item.
 
-I selected the project, established its academic and professional goals, and identified the target audience. I chose HTML, CSS, and JavaScript as the preferred stack and selected the light/dark theme direction. I defined the expected contact-form behavior and requested automated testing, GitHub Actions, and GitHub Pages deployment.
+## 3. Implementation structure and code review
 
-These were project and requirements decisions. I did not manually write or modify the application source code, implement the tests, or configure the workflow by hand.
+The implemented site follows a straightforward division of responsibilities:
 
-### Requirements definition
+| File | Responsibility | What to examine |
+| --- | --- | --- |
+| [`index.html`](../index.html) | Content, sections, navigation, and contact-form markup. | Section IDs, link destinations, labels, and accessibility attributes. |
+| [`styles.css`](../styles.css) | Layout, responsive breakpoints, color themes, and visual states. | CSS variables, mobile rules, visible focus, and reduced-motion styling. |
+| [`utils.js`](../utils.js) | Reusable email/form validation and theme functions. | Inputs, outputs, boundary checks, and functions without DOM dependencies. |
+| [`script.js`](../script.js) | DOM event listeners, theme switching, field feedback, and submission confirmation. | How it calls `utils.js`, updates the page, and handles unavailable storage. |
+| [`tests/utils.test.mjs`](../tests/utils.test.mjs) | Node.js unit tests for pure functions. | Accepted, rejected, and boundary cases. |
+| [`tools/browser-tests.mjs`](../tools/browser-tests.mjs) | End-to-end browser checks with Playwright and axe-core. | User interactions, page assertions, and mobile/accessibility checks. |
 
-I supplied the professor's assignment requirements and grading rubric, along with my technical expectations. I worked with ChatGPT to organize this information into a detailed development prompt, then supplied that prompt to Codex Desktop and directed implementation through my local Windows workspace. The specification was organized with ChatGPT assistance; I do not claim to have independently authored every sentence.
+I reviewed portions of the source code rather than performing a line-by-line audit. A useful architectural choice is the separation of validation logic in `utils.js` from the event-handling code in `script.js`: it permits unit testing without requiring a browser. The [architecture notes](ARCHITECTURE.md) describe the resulting design in more detail.
 
-### Professional content preparation
+## 4. Test coverage: what each test checks
 
-I provided my professional background, education, technical skills, featured projects, and engineering focus. I decided that the site should present a professional robotics portfolio while meeting the course requirements. The project distinguishes MaintainAI, a public software project, from the server-disassembly and vision/inspection experience summaries. The [architecture notes](ARCHITECTURE.md#content-provenance) describe content provenance and the use of conceptual illustrations.
+I required the project to include meaningful automated verification, not merely a website that renders once. The tables below explain the actual checks present in the repository. **They describe existing AI-assisted test scripts and their purpose; they do not imply I manually authored or individually executed all of them.**
 
-### Personal manual review and verification
+### Unit tests — 22 cases
 
-I opened the publicly deployed website and tested it through its user interface. I reviewed portions of the source code to understand the implementation, reviewed the GitHub README, identified where the documentation should better communicate my ownership, and requested and reviewed README improvements. I also confirmed that the local Git branch was synchronized with the remote repository and that the working tree was clean.
+These tests use the Node.js test runner and target pure functions in `utils.js`. They can be run with `npm test`.
 
-This is a record of the personal review I confirmed. It does not assert a specific browser, device, checklist, or exhaustive code review. Automated test execution and Git operations performed by Codex are distinct from my personal review; I did not manually execute every Git command.
+| Cases | Test inputs / situation | Expected outcome |
+| --- | --- | --- |
+| U01–U03 | Ordinary email, plus-addressed subdomain email, email with surrounding whitespace. | The email validator accepts all three. |
+| U04–U13 | Empty value, missing `@`, missing username/domain, double `@`, internal whitespace, localhost-only address, repeated dot, invalid domain start, and `null`. | The email validator rejects each invalid input. |
+| U14 | Form submitted with all required fields missing. | Name, email, and message errors are returned. |
+| U15 | Required fields contain whitespace only. | Whitespace does not count as valid input. |
+| U16 | Form contains valid name, email, and message. | No validation errors are returned. |
+| U17 | Form contains a malformed email. | An email-specific error is returned. |
+| U18 | Name, email, and message exceed the supported lengths. | All three length/boundary problems are rejected. |
+| U19 | Form fields contain unexpected non-string values. | Inputs are safely rejected without crashing validation. |
+| U20 | A stored explicit light/dark preference conflicts with system preference. | Stored preference takes priority. |
+| U21 | The stored theme is missing or invalid. | The current system preference determines the theme. |
+| U22 | Theme is toggled from light to dark and dark to light. | Both transitions return the expected value. |
 
-## C. Requirements and Design Decisions
+The email check is intentionally a practical form validator, not a full RFC email-address parser. The field-length and non-string checks help cover boundary/error conditions as well as the normal success path.
 
-| Decision                   | My direction                                                                                     | Implemented approach and rationale                                                                                                      |
-| -------------------------- | ------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
-| Technology stack           | I chose HTML, CSS, and JavaScript as the preferred technologies.                                 | A static page keeps the assignment understandable and deployable on GitHub Pages without an application backend.                        |
-| Sections and content       | I supplied the profile information, education, skills, featured work, and academic requirements. | Hero, About, work/experience cards, categorized skills, Contact, and footer give visitors a clear route from background to contact.     |
-| Demonstration contact form | I defined required name, email, and message fields, validation, and a thank-you confirmation.    | The form explicitly sends and stores no messages; a direct email link supports real inquiries.                                          |
-| Light/dark theme           | I selected a design direction with both appearances and a saved preference.                      | CSS theme tokens and JavaScript handle switching; localStorage stores only the theme choice.                                            |
-| Responsive design          | I requested a mobile-friendly, readable portfolio.                                               | CSS adapts the layout while retaining the section order and visible navigation. Codex implemented the detailed styling and breakpoints. |
-| Automated verification     | I requested unit and available browser tests.                                                    | Node tests cover form/theme utilities; Playwright and axe check browser behavior and selected accessibility rules.                      |
-| CI/CD and hosting          | I requested GitHub Actions and GitHub Pages.                                                     | Codex configured test/build/browser checks before static deployment. I reviewed available results and accessed the deployed site.       |
+### Browser/integration tests — 13 checks
 
-The [requirements](REQUIREMENTS.md) define functional/nonfunctional requirements and acceptance criteria. The [architecture](ARCHITECTURE.md) explains the separation of HTML structure, CSS presentation, pure JavaScript utilities, and DOM interactions. This description reflects the implementation; it does not claim that I personally authored each implementation detail.
+These tests use Playwright to exercise the application as a visitor would and are defined in [`tools/browser-tests.mjs`](../tools/browser-tests.mjs).
 
-## D. AI-Assisted Development Workflow
+| Case | Interaction or condition | Expected result |
+| --- | --- | --- |
+| I01 | Load the page and inspect mandatory sections. | Successful response; Home, About, Work, Skills, Contact, three cards, and portrait image exist. |
+| I02 | Click each main navigation link. | URL anchors reach the matching sections. |
+| I03 | Submit an empty form. | Required-field errors appear, invalid attributes are set, and focus moves to the name field. |
+| I04 | Enter an invalid email. | Email-specific feedback appears. |
+| I05 | Submit valid demonstration values. | Thank-you text appears; fields reset; no message is sent or stored. |
+| I06 | Toggle the theme and reload. | Dark theme remains selected after reload. |
+| I07 | Scan dark theme with axe-core. | No violations are reported for the configured rules. |
+| I08 | Scan light theme with axe-core. | No violations are reported for the configured rules. |
+| I09 | Test viewport widths 320, 375, 390, and 768 pixels. | No horizontal overflow at those widths. |
+| I10 | Navigate using the keyboard skip link. | The link sends focus/navigation to the main-content anchor. |
+| I11 | Enable reduced-motion preference. | Smooth scrolling is disabled. |
+| I12 | Simulate blocked browser storage. | Theme and contact-form interactions still work. |
+| I13 | Monitor page JavaScript errors. | No uncaught runtime errors are recorded. |
 
-1. I reviewed the academic project requirements.
-2. I selected and defined the portfolio project and its professional audience.
-3. I supplied professional information and technical requirements.
-4. I used ChatGPT to help structure a detailed development prompt.
-5. I provided the prompt to Codex Desktop in the local development session.
-6. Codex generated the application and supporting files locally in `C:\Users\gowth\Documents\robotics-portfolio` under my direction.
-7. Codex implemented and executed automated tests and performed authorized GitHub integration, CI/CD configuration, and deployment operations. GitHub hosted version control, CI/CD, and the public static site; source development took place locally.
-8. I opened and tested the deployed website through its user interface.
-9. I reviewed portions of the code and the project documentation, including available verification results.
-10. I requested subsequent improvements to the README and development-process documentation to describe the contributions accurately. Codex prepared those documentation changes.
+The stored [test plan](TEST_PLAN.md) reports **22 unit tests passed and 13 local Chrome checks passed**, with no failures in the final November 10 runs. It also reports 13 successful browser checks against the deployed site. Supporting records are in [`docs/verification/`](verification/). These are recorded automated results, not a substitute for personal usability review.
 
-The original development prompt was provided through the Codex session and is not included as a tracked repository artifact. This document describes the workflow; it does not reconstruct or present a replacement as the original prompt.
+### My manual website testing and review
 
-## E. Tools and Technologies
+I personally opened and tested the deployed [portfolio](https://a5ura.github.io/robotics-portfolio/). I also inspected parts of the source code and reviewed the README, then requested improvements to make the documentation more representative of my project decisions and contributions. I confirmed that my local `main` branch was up to date with `origin/main` and that the working tree was clean.
 
-| Tool or technology   | Purpose in this project                                                                                                                        |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| HTML                 | Semantic page content, sections, navigation, links, and form fields.                                                                           |
-| CSS                  | Typography, responsive layouts, light/dark appearance, focus styling, and reduced-motion support.                                              |
-| JavaScript           | Contact-form validation/confirmation, theme switching, and browser interaction logic.                                                          |
-| Git and GitHub       | Local change history, remote source control, reviewable commits, and access to workflow records.                                               |
-| Node.js              | Local development server, built-in unit test runner, validation tooling, and static build tools; not a production application server.          |
-| Playwright           | Automated browser interaction and layout checks; used with axe-core for selected accessibility checks.                                         |
-| GitHub Actions       | Automated unit/static/build/browser verification and deployment jobs.                                                                          |
-| GitHub Pages         | Public hosting for the static portfolio.                                                                                                       |
-| ChatGPT              | Help organizing the supplied requirements into a structured development prompt.                                                                |
-| OpenAI Codex Desktop | AI-assisted generation of source code, tests, documentation, academic deliverables, and authorized local/GitHub operations under my direction. |
+I have not maintained a separate step-by-step personal test log, so I am not marking every automated assertion above as a test I performed manually. To strengthen the evidence before final submission, I can record a dated hands-on checklist for navigation, form validation, successful form confirmation, theme persistence, links, and mobile display, noting the browser/device and observed result of each check.
 
-## F. Testing and Verification
+## 5. Version control, CI/CD, and deployment
 
-### Automated verification
+I specified GitHub-based version control, automated checks, and free public hosting as part of the desired engineering workflow. The implementation uses the [GitHub Actions workflow](../.github/workflows/pages.yml) to:
 
-Codex implemented and executed the automated checks through the authorized development environment. The November 10 [test plan](TEST_PLAN.md) and [checkpoint summary](CHECKPOINT_SUMMARY.md) record **22 unit tests passed, 0 failed**, **13 local Chrome checks passed, 0 failed**, and **13 deployed-site Chrome checks passed, 0 failed**. These are historical execution results, not a claim that I personally ran each test or that this documentation edit introduced another local application test run.
+1. Retrieve the repository and set up Node.js.
+2. Install development dependencies.
+3. Run unit tests and static validation.
+4. Build the static site.
+5. Install Playwright Chromium and test the built output.
+6. Publish the build to GitHub Pages after successful checks on `main`.
 
-The [unit test file](../tests/utils.test.mjs) exercises email/form validation and theme utilities. The [browser suite](../tools/browser-tests.mjs) checks page content, navigation, form behavior, theme persistence, accessibility scans, mobile overflow, keyboard access, reduced motion, disabled storage, and runtime errors. Stored [local browser results](verification/local-chrome-2026-11-10.json), [deployed browser results](verification/deployed-chrome-2026-11-10.json), and [deployment evidence](verification/deployment-2026-11-10.json) support the recorded counts.
+Codex configured this workflow and performed authorized repository/deployment operations in the local development session; GitHub Actions executed the hosted jobs. I reviewed the resulting evidence and tested the public site. The recorded workflow also shows an initial browser-installation problem with the runner environment that was resolved by using Ubuntu 24.04.
 
-### CI/CD verification
+**Evidence:** [Repository commits](https://github.com/a5ura/robotics-portfolio/commits/main/), [Actions history](https://github.com/a5ura/robotics-portfolio/actions), [checkpoint summary](CHECKPOINT_SUMMARY.md), and [deployment notes](DEPLOYMENT.md).
 
-Codex configured the [GitHub Actions workflow](../.github/workflows/pages.yml). [Run 42868833952](https://github.com/a5ura/robotics-portfolio/actions/runs/42868833952), for application commit `dd9099f65e51080a7aa0dd39d5d904c0d3db08d2`, completed successfully with test and deployment jobs. The recorded CI results include 22 passing unit tests, static validation/build, and 13 passing Chromium checks against the built output. The checkpoint documents the earlier unsupported-runner failure and its fix; skipped checks from that failed run are not counted as passes.
+## 6. Reflection and next steps
 
-The [Actions history](https://github.com/a5ura/robotics-portfolio/actions) provides subsequent workflow results. These records show automated execution, not manual configuration or test execution by me.
+The main engineering lesson from this project is that a small application can still follow a disciplined process: define requirements and boundaries, map them to visible functionality, separate logic for testability, test normal and error cases, and verify the deployed output instead of relying on a successful build alone.
 
-### Personal verification
+I also see the distinction between **directing a software project**, **reviewing generated code**, and **personally authoring that code**. My hands-on contributions to date include the decisions, specifications, professional content, deployed-site testing, partial code review, and requested revisions described above. Future manual coding or test execution can be added to this record when completed and documented.
 
-I specified the testing and deployment requirements, reviewed the available results, opened the public portfolio, tested its user interface, and reviewed portions of its source and documentation. This confirmation does not establish that I manually repeated every automated assertion. There is no separate personal manual-test log in the repository, and no additional manual browser/device checks are claimed here.
+Remaining work includes replacing the portrait placeholder, recording a more specific personal manual-test checklist, reviewing on a physical phone and a second browser, and extending the engineering case studies with non-confidential evidence.
 
-The stored [desktop screenshot](screenshots/portfolio-desktop.png) and [mobile screenshot](screenshots/portfolio-mobile.png) were produced through Codex's browser verification; they are supporting application artifacts, not evidence that I personally tested those devices or viewport sizes. Physical-phone, second-browser, screen-reader, and real email-client checks remain listed in the existing test plan. Automated scans do not establish complete accessibility or universal browser compatibility.
+### Related learning resources
 
-## G. Individual Contribution and Evidence Table
+These videos address concepts used in the portfolio. They are related references, **not a claim that I followed each tutorial during development**.
 
-| Activity                             | My involvement                                                                                                            | AI assistance                                                                                                       | Supporting evidence                                                                                                                                                                                                                 |
-| ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Project selection and goals          | I selected Project 7 and defined the academic/professional purpose and audience.                                          | ChatGPT helped organize the development instructions; Codex prepared documentation.                                 | Student-confirmed account; [status update](WEEK_10_11_STATUS_UPDATE.md); [requirements](REQUIREMENTS.md).                                                                                                                           |
-| Requirements and design direction    | I supplied the rubric and requirements, preferred stack, theme direction, and form/testing/deployment expectations.       | ChatGPT structured the prompt; Codex translated it into files and implementation details.                           | Student-confirmed account; [requirements](REQUIREMENTS.md); [architecture](ARCHITECTURE.md). The prompt was supplied through the session, not archived in Git.                                                                      |
-| Professional content                 | I provided background, education, skills, and featured work.                                                              | Codex incorporated and worded the supplied content and checked the MaintainAI description against its repository.   | [Content provenance](ARCHITECTURE.md#content-provenance); [portfolio source](../index.html).                                                                                                                                        |
-| Source-code implementation           | I directed the work and later reviewed portions of the code; I did not manually write or modify the application source.   | Codex wrote the HTML, CSS, JavaScript, responsive themes, and form behavior.                                        | [Initial implementation commit](https://github.com/a5ura/robotics-portfolio/commit/411efa3); [source and history](https://github.com/a5ura/robotics-portfolio/commits/main/). Commit authorship alone does not prove manual coding. |
-| Automated tests                      | I requested testing and reviewed available results.                                                                       | Codex generated and executed unit and integration checks.                                                           | [Unit tests](../tests/utils.test.mjs); [browser suite](../tools/browser-tests.mjs); [test plan](TEST_PLAN.md); [stored results](verification/local-chrome-2026-11-10.json).                                                         |
-| CI/CD and deployment                 | I requested Actions/Pages and personally accessed and tested the resulting public site.                                   | Codex configured the workflow and performed authorized GitHub/deployment operations; Actions executed the pipeline. | [Workflow](../.github/workflows/pages.yml); [successful run](https://github.com/a5ura/robotics-portfolio/actions/runs/42868833952); [checkpoint](CHECKPOINT_SUMMARY.md).                                                            |
-| Personal manual review               | I interacted with the deployed UI, reviewed portions of the source and README, and identified documentation improvements. | Codex supplied the application, automated evidence, and requested documentation revisions.                          | Student-confirmed account; no separate manual-test record is asserted. [Live portfolio](https://a5ura.github.io/robotics-portfolio/) and [README](../README.md) identify the reviewed materials.                                    |
-| README and development documentation | I requested and reviewed README improvements and directed this clarification of contributions.                            | Codex prepared the requested text and documentation changes.                                                        | [README revision](https://github.com/a5ura/robotics-portfolio/commit/7097312); [subsequent revision](https://github.com/a5ura/robotics-portfolio/commit/94a8f0c); [README](../README.md); this document.                            |
-| Repository synchronization           | I confirmed the synchronized branch and clean working tree from the available results.                                    | Codex executed the requested Git status and fast-forward pull operations locally.                                   | Student-confirmed account and Codex session command results; [commit history](https://github.com/a5ura/robotics-portfolio/commits/main/) shows source history, not a standalone record of every local status check.                 |
-| Academic deliverables                | I supplied course expectations and requested the supporting materials.                                                    | Codex generated technical documentation and the academic report.                                                    | [Short report](CMPS510_Portfolio_Short_Report.pdf); [layout sketch](layout-wireframe.png); [checkpoint summary](CHECKPOINT_SUMMARY.md).                                                                                             |
+- [Responsive CSS Grid Layout — Kevin Powell](https://www.youtube.com/watch?v=sKFW3wek21Q)
+- [JavaScript Form Validation — Web Dev Simplified](https://www.youtube.com/watch?v=In0nB0ABaUk)
+- [Dark/Light Theme Toggle with localStorage — codeSTACKr](https://www.youtube.com/watch?v=_raOFZAYXD4)
 
-## H. Lessons Learned and Future Improvements
+## 7. Development tools and disclosure
 
-The following are engineering takeaways from the documented workflow, rather than claims about personal mastery or unrecorded learning experiences:
+This is an individual project that I scoped and directed. The implementation uses HTML, CSS, JavaScript, Node.js, Playwright, Git, GitHub Actions, and GitHub Pages. I used **ChatGPT** to help organize the project specification and **OpenAI Codex Desktop** to assist with source-code generation, test automation, documentation, and deployment operations.
 
-- Defining requirements before implementation makes scope and acceptance criteria reviewable, including the distinction between a demonstration form and actual message delivery.
-- Separating content, presentation, and interaction logic makes the static implementation easier to inspect and revise. Extracted utilities allow focused tests without browser setup.
-- Automated tests provide repeatable evidence for validation and interaction behavior; their results complement personal review rather than proving every aspect of usability.
-- CI/CD makes verification part of publication and exposes environment-specific failures, as illustrated by the recorded browser/runner compatibility fix.
-- Reviewing AI-assisted source and documentation helps connect generated implementation details to the stated requirements. A partial review should not be presented as an exhaustive audit or manual authorship.
-- Checking the deployed application separately from local execution verifies the hosted paths and delivered experience; a successful build alone is not evidence that the public site works.
-
-Future work includes replacing the temporary portrait, completing the physical-device and additional browser/accessibility checks listed in the [test plan](TEST_PLAN.md), and expanding case studies with accurate, non-confidential details. Further source review can continue alongside those improvements. These are remaining actions, not completed contributions.
-
-### Related Learning Resources
-
-The following educational videos relate to frontend concepts demonstrated in this portfolio. They are listed as related learning resources, not as a record of tutorials I necessarily followed during implementation. Their inclusion does not change the contribution and AI-assistance account above. The same references appear in the small Development Resources section near the website footer.
-
-| Video                                                                                    | Creator            | Related concept demonstrated in this project                                                                                                |
-| ---------------------------------------------------------------------------------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Responsive CSS Grid Layout](https://www.youtube.com/watch?v=sKFW3wek21Q)                | Kevin Powell       | CSS Grid and responsive rules adapt the project and skills layouts to smaller screens in `styles.css`.                                      |
-| [JavaScript Form Validation](https://www.youtube.com/watch?v=In0nB0ABaUk)                | Web Dev Simplified | `utils.js` checks required fields and email format; `script.js` displays inline feedback and a demo confirmation without sending a message. |
-| [Dark/Light Theme Toggle with localStorage](https://www.youtube.com/watch?v=_raOFZAYXD4) | codeSTACKr         | Theme tokens in `styles.css` and interactions in `script.js` switch appearance and save the selected preference in localStorage.            |
-
-## I. AI Assistance Disclosure
-
-This is an individual, human-directed, AI-assisted project. I supplied project direction, requirements, professional content, and confirmed personal verification. ChatGPT helped organize the requirements into a development prompt. OpenAI Codex Desktop generated the application code, tests, technical documentation, and academic deliverables and performed authorized automated verification and deployment operations in the local development workflow.
-
-I did not manually write or modify the application source code. I reviewed portions of it, tested the deployed website through its user interface, reviewed the README and available results, and requested documentation improvements. AI assistance is disclosed in the [README](../README.md#development-approach-and-ai-assistance); neither generated code nor AI-prepared documentation is represented as entirely handwritten by me.
+I supplied the direction and project content, reviewed selected code and documentation, and personally tested the published interface. I have not represented the generated application code or automated test scripts as wholly handwritten work. The [README](../README.md#development-approach-and-ai-assistance) contains the shorter disclosure required by the course charter.
