@@ -35,6 +35,6 @@ Initial local browser attempts were blocked by Windows sandbox networking. The a
 - [ ] Replace portrait and update alt/caption text before final submission.
 - [ ] Recheck real inbox workflow using the direct email link in the student's mail application.
 
-Public deployment verification and Actions results are recorded in the checkpoint summary; these are distinct from the local execution above.
+Public deployment verification: the site returned HTTP 200 with the expected application, and all **13 deployed Chrome checks passed, 0 failed** on November 10, 2026. The final CI application run also passed 22 unit tests and 13 Chromium checks against `dist/`. Evidence and workflow links are recorded in the [checkpoint summary](CHECKPOINT_SUMMARY.md); these are distinct from the local execution above.
 
 The first Actions run passed unit/static/build checks but browser installation failed because `ubuntu-latest` selected Ubuntu 26.04, unsupported by the pinned Playwright release. The workflow was pinned to Ubuntu 24.04 before rerunning. No skipped browser checks are counted as passing.

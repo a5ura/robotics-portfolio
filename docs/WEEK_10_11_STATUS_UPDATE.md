@@ -13,7 +13,7 @@ I selected the Personal Portfolio Page (Project 7) on November 6 and missed the 
 - Added validated demonstration form feedback without message delivery/storage, and light/dark themes with a saved preference.
 - Ran 22 unit tests and 13 local Chrome integration checks successfully, including mobile overflow and accessibility scans in both themes; validated HTML and static assets.
 - Created the requirements, architecture, test plan, layout sketch, README screenshots, and two-page report with exactly five user stories and acceptance criteria.
-- Prepared an Actions workflow that verifies the application before Pages deployment. The checkpoint summary records the current repository/deployment evidence.
+- Created the public [repository](https://github.com/a5ura/robotics-portfolio) and deployed the [portfolio](https://a5ura.github.io/robotics-portfolio/) through a successful Actions workflow. The public URL returned HTTP 200 and all 13 deployed Chrome checks passed. The checkpoint summary records the evidence.
 
 ## In progress / remaining
 

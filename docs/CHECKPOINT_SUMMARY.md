@@ -20,9 +20,13 @@ Implemented locally in `C:\Users\gowth\Documents\robotics-portfolio`. Semantic s
 
 ## Repository and deployment
 
-Target repository: `https://github.com/a5ura/robotics-portfolio`.
+Public repository: [a5ura/robotics-portfolio](https://github.com/a5ura/robotics-portfolio).
 
-GitHub publication and Pages verification are pending at initial document creation. This section will be updated after the actual operation; the expected public URL is not yet asserted to be live.
+Live site: [https://a5ura.github.io/robotics-portfolio/](https://a5ura.github.io/robotics-portfolio/).
+
+**Deployment verified November 10, 2026.** The public URL returned HTTP 200 with the expected portfolio. The complete Chrome suite then ran against that public URL: **13 passed, 0 failed**, including both axe scans, form behavior, persisted theme and mobile layout checks. Public site evidence: [deployed browser results](verification/deployed-chrome-2026-11-10.json).
+
+[GitHub Actions run 42868833952](https://github.com/a5ura/robotics-portfolio/actions/runs/42868833952) completed successfully for application commit `dd9099f65e51080a7aa0dd39d5d904c0d3db08d2`. Both test and deploy jobs passed; CI ran the 22 unit cases, static validation/build, and all 13 Chromium checks against `dist/`. The first run's unsupported Ubuntu browser-installation failure was resolved by pinning Ubuntu 24.04. The repository was created empty after inspection and pushed from the local Windows workspace; no unrelated remote history was overwritten.
 
 ## Remaining work and limitations
 

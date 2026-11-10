@@ -2,7 +2,9 @@
 
 A professional single-page portfolio focused on robotics deployment, systems integration, industrial automation, computer vision, and applied AI. Also **Project 7: Personal Portfolio Page** for CMPS 510 at Bay Atlantic University, taught by Dr. Tsige Tessema.
 
-Repository and deployment evidence: [checkpoint summary](docs/CHECKPOINT_SUMMARY.md). The deployment URL is added here after public verification.
+**[Live portfolio](https://a5ura.github.io/robotics-portfolio/)** · **[GitHub repository](https://github.com/a5ura/robotics-portfolio)**
+
+Verified November 10, 2026: public HTTP 200 and all 13 deployed Chrome checks passed. [Successful test/deploy workflow](https://github.com/a5ura/robotics-portfolio/actions/runs/42868833952) · [Checkpoint evidence](docs/CHECKPOINT_SUMMARY.md).
 
 ![Portfolio desktop screenshot](docs/screenshots/portfolio-desktop.png)
 

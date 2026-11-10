@@ -2,6 +2,12 @@
 
 All source development and tests run locally on Windows. GitHub is used for version control, CI/CD and public static hosting only.
 
+## Verified deployment - November 10, 2026
+
+[Public repository](https://github.com/a5ura/robotics-portfolio) · [Live portfolio](https://a5ura.github.io/robotics-portfolio/) · [Successful Actions run](https://github.com/a5ura/robotics-portfolio/actions/runs/42868833952).
+
+The public URL returned HTTP 200 and all 13 deployed Chrome checks passed. CI also passed 22 unit tests, static validation/build and 13 built-output Chromium checks before deployment. CI uses Ubuntu 24.04 because the initial `ubuntu-latest` image selected Ubuntu 26.04, unsupported by the pinned Playwright version. This was fixed locally and pushed before the successful run.
+
 ## Automated path used by this project
 
 1. Inspect the remote repository and local Git status; never force-push or replace unrelated history.
