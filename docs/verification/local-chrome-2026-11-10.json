@@ -1,0 +1,59 @@
+{
+  "url": "http://127.0.0.1:4180/",
+  "results": [
+    {
+      "name": "Page loads with mandatory sections",
+      "status": "passed"
+    },
+    {
+      "name": "All main navigation links reach their sections",
+      "status": "passed"
+    },
+    {
+      "name": "Empty form gives accessible errors and focuses name",
+      "status": "passed"
+    },
+    {
+      "name": "Invalid email is rejected",
+      "status": "passed"
+    },
+    {
+      "name": "Successful demo thanks visitor with no request or stored message",
+      "status": "passed"
+    },
+    {
+      "name": "Theme switch persists after reload",
+      "status": "passed"
+    },
+    {
+      "name": "Dark theme has no automated accessibility violations",
+      "status": "passed"
+    },
+    {
+      "name": "Light theme has no automated accessibility violations",
+      "status": "passed"
+    },
+    {
+      "name": "Mobile widths have no horizontal overflow",
+      "status": "passed"
+    },
+    {
+      "name": "Keyboard skip link works",
+      "status": "passed"
+    },
+    {
+      "name": "Reduced motion disables smooth scrolling",
+      "status": "passed"
+    },
+    {
+      "name": "Blocked localStorage does not break theme or form",
+      "status": "passed"
+    },
+    {
+      "name": "No JavaScript runtime errors",
+      "status": "passed"
+    }
+  ],
+  "passed": 13,
+  "failed": 0
+}

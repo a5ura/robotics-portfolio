@@ -1,0 +1,23 @@
+{
+  "name": "robotics-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Gowtham Kanneganti's robotics engineering portfolio and CMPS 510 project",
+  "scripts": {
+    "dev": "node tools/serve.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "validate": "node --check script.js && node --check utils.js && node tools/validate.mjs",
+    "build": "node tools/build.mjs",
+    "test:browser": "node tools/browser-tests.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.11.0",
+    "html-validate": "11.21.0",
+    "playwright": "1.56.1",
+    "prettier": "3.9.10"
+  }
+}

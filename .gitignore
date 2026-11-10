@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.tools/
+tmp/
+test-results/
+.env
+.env.*
+*.log
+# Original supplied brief remains local.
+\# CMPS 510*.txt
