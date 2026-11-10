@@ -70,7 +70,7 @@ The November 10 checkpoint records **22 passing unit tests and 13 passing browse
 
 ## CMPS 510 project
 
-This website is also my **Personal Portfolio Page** project for CMPS 510, *Principles and Concepts of Software Engineering*, at Bay Atlantic University.
+This website is also my **Personal Portfolio Page** project for CMPS 510, _Principles and Concepts of Software Engineering_, at Bay Atlantic University.
 
 The assignment focuses on planning, building, testing, and publishing a small working application. The supporting materials include:
 
@@ -79,13 +79,15 @@ The assignment focuses on planning, building, testing, and publishing a small wo
 - [November 15 checkpoint summary](docs/CHECKPOINT_SUMMARY.md).
 - [Week 10–11 status update](docs/WEEK_10_11_STATUS_UPDATE.md).
 
-## Development approach and tools
+## Development Approach and AI Assistance
 
-### Development Tools
+This portfolio was developed as an individual software engineering project. I established the project goals, selected the technology stack, defined the requirements, provided the professional content, and directed the development process.
 
-The project was developed using HTML, CSS, JavaScript, Git, GitHub Actions, and Playwright. OpenAI Codex was used as an AI-assisted development tool under my direction for implementation, testing, and documentation.
+I used ChatGPT to help organize the requirements and OpenAI Codex Desktop as an AI-assisted implementation tool for application development, testing, documentation, and deployment automation.
 
-The implementation uses standard web technologies, Node.js tooling, Playwright, and GitHub Actions.
+I personally reviewed portions of the source code and tested the deployed website. The application code was generated with Codex assistance rather than manually written by me.
+
+A detailed explanation of my contributions, development workflow, tools, and verification process is available in the [Development Process](docs/DEVELOPMENT_PROCESS.md).
 
 ## Still to do
 
