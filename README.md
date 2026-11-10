@@ -81,7 +81,9 @@ The assignment focuses on planning, building, testing, and publishing a small wo
 
 ## Development approach and tools
 
-I chose the portfolio's direction, featured work, technical scope, and design preferences, and supplied the professional background reflected here. I used **OpenAI Codex as a development assistant** for frontend implementation, automated testing, CI/CD setup, and documentation. I am responsible for reviewing the content and understanding the code in this project.
+### Development Tools
+
+The project was developed using HTML, CSS, JavaScript, Git, GitHub Actions, and Playwright. OpenAI Codex was used as an AI-assisted development tool under my direction for implementation, testing, and documentation.
 
 The implementation uses standard web technologies, Node.js tooling, Playwright, and GitHub Actions.
 
