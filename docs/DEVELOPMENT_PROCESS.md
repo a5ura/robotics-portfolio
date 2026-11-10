@@ -136,6 +136,6 @@ These videos address concepts used in the portfolio. They are related references
 
 ## 7. Development tools and disclosure
 
-This is an individual project that I scoped and directed. The implementation uses HTML, CSS, JavaScript, Node.js, Playwright, Git, GitHub Actions, and GitHub Pages. I used **ChatGPT** to help organize the project specification and **OpenAI Codex Desktop** to assist with source-code generation, test automation, documentation, and deployment operations.
+This is an individual project that I scoped and directed. The implementation uses HTML, CSS, JavaScript, Node.js, Playwright, Git, GitHub Actions, and GitHub Pages. I used **ChatGPT** to help organize the project and assist as a pair programmer , test automation, documentation, and deployment operations.
 
 I supplied the direction and project content, reviewed selected code and documentation, and personally tested the published interface. I have not represented the generated application code or automated test scripts as wholly handwritten work. The [README](../README.md#development-approach-and-ai-assistance) contains the shorter disclosure required by the course charter.
