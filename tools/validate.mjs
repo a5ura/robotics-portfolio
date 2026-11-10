@@ -1,7 +1,8 @@
 import { HtmlValidate } from "html-validate";
 import { readFile, access } from "node:fs/promises";
 import assert from "node:assert/strict";
-const result = await new HtmlValidate().validateFile("index.html");
+const config = JSON.parse(await readFile(".htmlvalidate.json", "utf8"));
+const result = await new HtmlValidate(config).validateFile("index.html");
 if (!result.valid) {
   for (const r of result.results)
     for (const m of r.messages)
