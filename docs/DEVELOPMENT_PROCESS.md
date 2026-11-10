@@ -130,6 +130,16 @@ The following are engineering takeaways from the documented workflow, rather tha
 
 Future work includes replacing the temporary portrait, completing the physical-device and additional browser/accessibility checks listed in the [test plan](TEST_PLAN.md), and expanding case studies with accurate, non-confidential details. Further source review can continue alongside those improvements. These are remaining actions, not completed contributions.
 
+### Related Learning Resources
+
+The following educational videos relate to frontend concepts demonstrated in this portfolio. They are listed as related learning resources, not as a record of tutorials I necessarily followed during implementation. Their inclusion does not change the contribution and AI-assistance account above. The same references appear in the small Development Resources section near the website footer.
+
+| Video                                                                                    | Creator            | Related concept demonstrated in this project                                                                                                |
+| ---------------------------------------------------------------------------------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Responsive CSS Grid Layout](https://www.youtube.com/watch?v=sKFW3wek21Q)                | Kevin Powell       | CSS Grid and responsive rules adapt the project and skills layouts to smaller screens in `styles.css`.                                      |
+| [JavaScript Form Validation](https://www.youtube.com/watch?v=In0nB0ABaUk)                | Web Dev Simplified | `utils.js` checks required fields and email format; `script.js` displays inline feedback and a demo confirmation without sending a message. |
+| [Dark/Light Theme Toggle with localStorage](https://www.youtube.com/watch?v=_raOFZAYXD4) | codeSTACKr         | Theme tokens in `styles.css` and interactions in `script.js` switch appearance and save the selected preference in localStorage.            |
+
 ## I. AI Assistance Disclosure
 
 This is an individual, human-directed, AI-assisted project. I supplied project direction, requirements, professional content, and confirmed personal verification. ChatGPT helped organize the requirements into a development prompt. OpenAI Codex Desktop generated the application code, tests, technical documentation, and academic deliverables and performed authorized automated verification and deployment operations in the local development workflow.

@@ -735,6 +735,57 @@ form {
   border-left: 3px solid var(--accent);
   background: var(--soft);
 }
+.development-resources {
+  padding-block: 36px;
+}
+.development-resources h2 {
+  font-size: 23px;
+  letter-spacing: -0.5px;
+  margin-bottom: 10px;
+}
+.resources-note {
+  max-width: 760px;
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 24px;
+}
+.resource-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.resource-list li {
+  border-top: 1px solid var(--line);
+  padding-top: 15px;
+  min-width: 0;
+}
+.resource-list .resource-creator {
+  color: var(--muted);
+  font-size: 11px;
+  margin-bottom: 6px;
+}
+.resource-list h3 {
+  font-size: 15px;
+  line-height: 1.5;
+  margin-bottom: 9px;
+}
+.resource-list a {
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 4px;
+}
+.resource-list a:hover {
+  color: var(--accent);
+  text-decoration-color: currentColor;
+}
+.resource-list li > p:last-child {
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 0;
+}
 .site-footer {
   display: flex;
   align-items: center;
@@ -994,6 +1045,10 @@ form {
     gap: 0;
   }
   .site-footer {
+    gap: 22px;
+  }
+  .resource-list {
+    grid-template-columns: 1fr;
     gap: 22px;
   }
   .site-footer > div:first-child {
