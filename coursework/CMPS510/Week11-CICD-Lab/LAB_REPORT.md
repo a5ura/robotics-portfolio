@@ -5,7 +5,7 @@
 **Course:** CMPS 510 — Principles and Concepts of Software Engineering  
 **Instructor:** Dr. Tsige Tessema  
 **Project:** Personal Portfolio Page (Project 7) / Robotics Engineering Portfolio  
-**Evidence reviewed:** November 10, 2026
+**Evidence Last reviewed:** November 10, 2026
 
 ## 1. Objective and application under test
 This lab applies continuous integration and continuous delivery to the existing [robotics-portfolio repository](https://github.com/a5ura/robotics-portfolio), replacing the earlier illustrative equipment-maintenance example. The application is a static, single-page HTML/CSS/JavaScript portfolio with responsive layouts, light/dark theme preference, navigation, and a demonstration contact form. It has no production application server or database; the form does not send or store messages.
